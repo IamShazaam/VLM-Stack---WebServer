@@ -19,7 +19,8 @@
             - POST method http://localhost:8000/api/create-account
             - Body -> form-data -> key: username, value: myusername -> key: password -> value: mypassword
             - SEND
-            * Remember the password are already sended as hash('sha256'), this is a reminder to make sure to save your passsword.
+            * Remember the password are already sended as hash('sha256'), 
+              this is a reminder to make sure to save your passsword.
 
         * To use the dummyData creator:
             - POST method http://localhost:8000/create-accounts and SEND
