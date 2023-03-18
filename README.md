@@ -1,5 +1,5 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://assets.stickpng.com/images/62cc1b3a150d5de9a3dad5f7.png" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="http://teampereda.com/62cc1b3a150d5de9a3dad5f7.png" width="400" alt="Postman Logo"></a></p>
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
@@ -14,6 +14,7 @@
 * MSSQL: database to perform CRUD (Create, Read, Update, and Delete) operations.
 
     To use the endPoints of this backend project you need to use POSTMAN
+    
         * To create users: 
             - POST method http://localhost:8000/api/create-account
             - Body -> form-data -> key: username, value: myusername -> key: password -> value: mypassword
