@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DatabaseTestController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\DummyDataController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +26,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/test-connections', [DatabaseTestController::class, 'testConnection']);
 
 Route::post('create-account', [AccountController::class, 'create']);
+Route::post('dummy-accounts', [DummyDataController::class, 'createAccounts']);
