@@ -1,5 +1,5 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://assets.stickpng.com/images/62cc1b3a150d5de9a3dad5f7.png" width="400" alt="Laravel Logo"></a></p>
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
@@ -13,6 +13,17 @@
 * Laravel: Model (data handling) + Controller (business logic) + API routes
 * MSSQL: database to perform CRUD (Create, Read, Update, and Delete) operations.
 
+    To use the endPoints of this backend project you need to use POSTMAN
+        * To create users: 
+            - POST method http://localhost:8000/api/create-account
+            - Body -> form-data -> key: username, value: myusername -> key: password -> value: mypassword
+            - SEND
+            * Remember the password are already sended as hash('sha256'), this is a reminder to make sure to save your passsword.
+
+        * To use the dummyData creator:
+            - POST method http://localhost:8000/create-accounts and SEND
+            * There is no need to add values here since its already written in dummyDataController.     
+    
     Me_MuOnline:
 
         MEMB_INFO: Contains user account information.
@@ -45,7 +56,8 @@
 
         Character: Contains character information for the BattleCore server.
         Guild: Contains information about guilds for the BattleCore server.
-        GuildMember: Contains information about guild members for the BattleCore server, connecting a character to a guild.
-        To define relationships between the tables in Laravel, you will need to create appropriate Eloquent models for each 
-        table and then define the relationships using Eloquent's relationship methods like hasOne, hasMany, 
-        belongsTo, and belongsToMany.
+        GuildMember: Contains information about guild members for the BattleCore server, 
+        connecting a character to a guild.
+        To define relationships between the tables in Laravel, you will need to create 
+        appropriate Eloquent models for each table and then define the relationships using 
+        Eloquent's relationship methods like hasOne, hasMany, belongsTo, and belongsToMany.
