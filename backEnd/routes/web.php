@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\DummyDataController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +21,4 @@ Route::get('/', function () {
 
 
 Route::post('/api/register', [RegistrationController::class, 'register']);
+Route::post ('/create-accounts', [DummyDataController::class, 'createAccounts']);

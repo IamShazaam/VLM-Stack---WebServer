@@ -25,16 +25,6 @@ class AccountController extends Controller
 
             $hashedPwd = hash('sha256', $request->password);
 
-            // DB::connection('Me_MuOnline')->insert("INSERT INTO [Me_MuOnline].dbo.MEMB_INFO (memb___id, memb__pwd, sno__numb, bloc_code, ctl1_code) VALUES (:username, :password, '1111111111111', 0, 0)", [
-            //     'username' => $request->username,
-            //     'password' => substr($hashedPwd, 0, $pwdMaxLen),
-            // ]);
-
-            // DB::connection('Me_MuOnline')->insert("INSERT INTO [Me_MuOnline].dbo.MEMB_INFO (memb___id, memb__pwd, memb_name, sno__numb, bloc_code, ctl1_code) VALUES (:username, :password, :username, '1111111111111', 0, 0)", [
-            //     'username' => $request->username,
-            //     'password' => substr($hashedPwd, 0, $pwdMaxLen),
-            // ]);
-
             DB::connection('Me_MuOnline')->insert("INSERT INTO [Me_MuOnline].dbo.MEMB_INFO (memb___id, memb__pwd, memb_name, sno__numb, bloc_code, ctl1_code) VALUES (?, ?, ?, '1111111111111', 0, 0)", [
                 $request->username,
                 substr($hashedPwd, 0, $pwdMaxLen),
