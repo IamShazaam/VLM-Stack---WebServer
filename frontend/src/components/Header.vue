@@ -25,9 +25,14 @@
           </ul>
         </div>
         <!--topPanel-left-->
-        <div class="topPanel-right">
-          <a href="#register" class="sign-in open_modal"> Sign In </a>
+        <div v-if="!loggedIn">
+          <div class="topPanel-right">
+            <a href="#register" class="sign-in open_modal"> Sign In </a>
+          </div>
         </div>
+        <!-- <div class="topPanel-right">
+          <a class="sign-in open_modal"> Sign In </a>
+        </div> -->
         <!--topPanel-right-->
       </div>
     </div>
@@ -78,7 +83,7 @@
 
   <div id="register" class="modal_div">
     <span class="modal_close"></span>
-    <form>
+    <form @submit.prevent="login">
       <div class="modalContent">
         <span class="modalTitle">Sign In</span>
         <div class="enterButtons">
@@ -88,11 +93,11 @@
         <div class="fields">
           <div class="fieldGroup">
             <span>Login</span>
-            <input type="text" />
+            <input type="text" v-model="username" />
           </div>
           <div class="fieldGroup">
             <span>Password</span>
-            <input type="password" />
+            <input type="password" v-model="password" />
           </div>
         </div>
         <!--fields-->
@@ -113,8 +118,42 @@
 </template>
 
 <script>
+import bcrypt from 'bcryptjs';
+import axios from 'axios';
+
 export default {
   name: 'PageHeader',
+  data() {
+    return {
+      username: '',
+      password: '',
+      loggedIn: false,
+    };
+  },
+  methods: {
+    login() {
+      const hashedPassword = bcrypt.hashSync(this.password, 10);
+      axios
+        .post('http://localhost:8000/api/login', {
+          username: this.username,
+          password: hashedPassword,
+        })
+        .then((response) => {
+          // Handle successful login
+          console.log(response.data);
+          this.loggedIn = true;
+        })
+        .catch((error) => {
+          // Handle login error
+          console.log(error.response.data);
+        });
+      console.log(this.username, this.password);
+    },
+    logout() {
+      // TODO: Implement logout functionality
+      this.loggedIn = false;
+    },
+  },
   mounted() {
     const overlay = document.querySelector('#overlay');
     const openModalLinks = document.querySelectorAll('.open_modal');

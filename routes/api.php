@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DatabaseTestController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DummyDataController;
-use App\Http\Controllers\CheckUsernameController;
 
 
 /*
@@ -29,4 +28,5 @@ Route::post('/create-account', [AccountController::class, 'create']);
 Route::post('dummy-accounts', [DummyDataController::class, 'createAccounts']);
 Route::get('/check-username/{username}', [AccountController::class, 'checkUsername']);
 Route::get('/check-email/{email}', [AccountController::class, 'checkEmail']);
+Route::post('/login', [AccountController::class, 'login']);
 // Route::get('/api/check-username/{username}', [CheckUsernameController::class, 'checkUsername']);
