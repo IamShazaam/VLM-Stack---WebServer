@@ -1,5 +1,6 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="http://teampereda.com/62cc1b3a150d5de9a3dad5f7.png" width="400" alt="Postman Logo"></a></p>
+<p align="center"><a href="https://postman.com" target="_blank"><img src="http://teampereda.com/62cc1b3a150d5de9a3dad5f7.png" width="400" alt="Postman Logo"></a></p>
+<p align="center"><a href="https://vuejs.org/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" width="400" alt="Postman Logo"></a></p>
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
