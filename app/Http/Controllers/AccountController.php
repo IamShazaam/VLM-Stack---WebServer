@@ -4,10 +4,42 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class AccountController extends Controller
 {
+    public function login(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+    
+        $username = $request->input('username');
+        $password = $request->input('password');
+    
+        // Query the database to check if the user exists
+        $user = DB::connection('Me_MuOnline')->selectOne("SELECT * FROM [Me_MuOnline].dbo.MEMB_INFO WHERE memb___id = ?", [
+            $username,
+        ]);
+
+        // dd($user);
+    
+        if (!$user) {
+            return response()->json(['message' => 'Invalid username'], 401);
+        }
+    
+        // Verify the password hash
+        if (password_verify($password, $user->memb__pwd)) {
+            return response()->json(['message' => 'Invalid password'], 401);
+        }
+        // TODO: Add additional login logic if needed
+    
+        return response()->json(['message' => 'Login successful'], 200);
+    }
+
     public function create(Request $request)
     {
         // Validate the request data
@@ -26,8 +58,8 @@ class AccountController extends Controller
         try {
             $result = DB::connection('Me_MuOnline')->select("SELECT CHARACTER_MAXIMUM_LENGTH FROM [Me_MuOnline].INFORMATION_SCHEMA.COLUMNS IC WHERE TABLE_NAME = 'MEMB_INFO' AND COLUMN_NAME = 'memb__pwd'");
             $pwdMaxLen = $result[0]->CHARACTER_MAXIMUM_LENGTH;
-
-            $hashedPwd = hash('sha256', $request->password);
+            
+            $hashedPwd = password_hash($request->password, PASSWORD_DEFAULT);
 
             DB::connection('Me_MuOnline')->insert("INSERT INTO [Me_MuOnline].dbo.MEMB_INFO (memb___id, memb__pwd, mail_addr, memb_name, sno__numb, bloc_code, ctl1_code, genre) VALUES (?, ?, ?, ?, '1111111111111', 0, 0, ?)", [
                 $request->username,
@@ -79,44 +111,4 @@ class AccountController extends Controller
         return response()->json(['boolean' => true], 200);
     }
 }
-
-    // public function checkUsername1(Request $request)
-    // {
-    //     // Get the username from the query string
-    //     $username = $request->query('username');
-
-    //     // Check if the username exists
-    //     $result = DB::connection('Me_MuOnline')->select("SELECT COUNT(*) as count FROM [Me_MuOnline].dbo.MEMB_INFO WHERE memb___id = ?", [
-    //         $username,
-    //     ]);
-
-    //     $count = $result[0]->count;
-
-    //     if ($count > 0) {
-    //         return response()->json(['message' => 'Username already exists'], 400);
-    //     }
-
-    //     return response()->json(['message' => 'Username is available'], 200);
-    // }
-    // public function checkUsername(Request $request)
-    // {
-    //     // Validate the request data
-    //     $request->validate([
-    //         'username' => 'required|max:10',
-    //     ]);
-
-    //     // Check if the username exists
-    //     $result = DB::connection('Me_MuOnline')->select("SELECT COUNT(*) as count FROM [Me_MuOnline].dbo.MEMB_INFO WHERE memb___id = ?", [
-    //         $request->username,
-    //     ]);
-
-    //     $count = $result[0]->count;
-
-    //     if ($count > 0) {
-    //         return response()->json(['message' => 'Username already exists'], 400);
-    //     }
-
-    //     return response()->json(['message' => 'Username is available'], 200);
-    // }
-
 }
