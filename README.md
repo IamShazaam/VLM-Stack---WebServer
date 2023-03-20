@@ -26,7 +26,12 @@
         * To use the dummyData creator:
             - POST method http://localhost:8000/create-accounts and SEND
             * There is no need to add values here since its already written in dummyDataController.     
-    
+        
+        * endPoints added:
+            - GET method http://localhost:8000/api/check-email/mymail@gmail.com and SEND
+            - GET method http://localhost:8000/api/check-username/testaccount and SEND
+            
+            
     Me_MuOnline:
 
         MEMB_INFO: Contains user account information.
