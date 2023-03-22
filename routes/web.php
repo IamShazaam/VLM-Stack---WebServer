@@ -23,3 +23,8 @@ Route::get('/', function () {
 Route::post('/api/register', [RegistrationController::class, 'register']);
 Route::post ('/create-accounts', [DummyDataController::class, 'createAccounts']);
 // Route::get('/api/check-username/{username}', [AccountController::class, 'checkUsername']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/login', 'App\Http\Controllers\AccountController@login');
