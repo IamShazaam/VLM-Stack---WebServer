@@ -20,14 +20,24 @@
               <a><router-link to="/downloads">Downloads</router-link></a>
             </li>
             <li>
-              <a><router-link to="/about">About</router-link></a>
+              <a><router-link to="/login">Login</router-link></a>
+            </li>
+            <li>
+              <a><router-link to="/myaccount">MyAcc</router-link></a>
             </li>
           </ul>
         </div>
         <!--topPanel-left-->
         <div v-if="!loggedIn">
           <div class="topPanel-right">
+            <p>Welcome, Extranger</p>
             <a href="#register" class="sign-in open_modal"> Sign In </a>
+          </div>
+        </div>
+        <div v-if="loggedIn">
+          <div class="topPanel-right">
+            <p>Welcome, {{ username }}</p>
+            <a class="sign-in" @click="logout"> Log Out </a>
           </div>
         </div>
         <!-- <div class="topPanel-right">
@@ -120,6 +130,7 @@
 <script>
 import bcrypt from 'bcryptjs';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 export default {
   name: 'PageHeader',
@@ -127,34 +138,77 @@ export default {
     return {
       username: '',
       password: '',
+      remember: false,
       loggedIn: false,
+      user: null,
     };
   },
   methods: {
     login() {
       const hashedPassword = bcrypt.hashSync(this.password, 10);
       axios
-        .post('http://localhost:8000/api/login', {
+        .post('/login', {
           username: this.username,
           password: hashedPassword,
+          remember: this.remember,
         })
         .then((response) => {
-          // Handle successful login
-          console.log(response.data);
+          console.log(response);
+          // Login successful, store JWT in local storage
+          const decodedJwt = jwt_decode(response.data.jwt);
+          console.log(decodedJwt);
           this.loggedIn = true;
+          this.user = decodedJwt.username;
+          console.log(this.user);
+          localStorage.setItem('jwt', response.data.jwt);
+          this.$router.push('/myaccount');
+          console.log(this.username, 'is logged in from the endpoint');
         })
         .catch((error) => {
-          // Handle login error
-          console.log(error.response.data);
+          console.error('Login error:', error);
         });
-      console.log(this.username, this.password);
+      console.log(this.username);
     },
     logout() {
-      // TODO: Implement logout functionality
-      this.loggedIn = false;
+      axios.post('/logout').then(() => {
+        this.loggedIn = false;
+        this.user = {};
+        localStorage.removeItem('jwt');
+        this.$router.push('/');
+      });
     },
   },
+  created() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      try {
+        const decodedJwt = jwt_decode(jwt);
+        console.log(decodedJwt);
+        this.user = decodedJwt.username;
+        this.loggedIn = decodedJwt.authenticated;
+        console.log(this.user + ' is ' + this.loggedIn);
+        axios
+          .get('/user', {
+            headers: {
+              Authorization: decodedJwt.session_token,
+            },
+          })
+          .then((response) => {
+            //Taking the username from the db
+            this.username = response.data.username;
+            console.log(this.user);
+          });
+      } catch (error) {
+        console.error('Error decoding JWT:', error);
+      }
+    }
+  },
   mounted() {
+    // Check if the user is authenticated
+    // axios.get('/check-auth').then((response) => {
+    //   this.loggedIn = response.data.authenticated;
+    // });
+
     const overlay = document.querySelector('#overlay');
     const openModalLinks = document.querySelectorAll('.open_modal');
     const closeModalElements = document.querySelectorAll(

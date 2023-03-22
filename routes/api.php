@@ -29,4 +29,19 @@ Route::post('dummy-accounts', [DummyDataController::class, 'createAccounts']);
 Route::get('/check-username/{username}', [AccountController::class, 'checkUsername']);
 Route::get('/check-email/{email}', [AccountController::class, 'checkEmail']);
 Route::post('/login', [AccountController::class, 'login']);
+Route::post('/logout', [AccountController::class, 'logout']);
+Route::get('/check-auth', [AccountController::class, 'checkAuth']);
+Route::get('/user', [AccountController::class, 'user']);
 // Route::get('/api/check-username/{username}', [CheckUsernameController::class, 'checkUsername']);
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Route::get('/user', function (Request $request) {
+//     $user = DB::table('MEMB_INFO')
+//         ->where('session_token', $request->header('Authorization'))
+//         ->where('isloggedIn', 1)
+//         ->select('memb___id as username')
+//         ->first();
+//     return response()->json($user);
+// });
