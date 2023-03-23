@@ -1,7 +1,9 @@
 <template>
   <main class="main">
     <aside>
-      <Aside />
+      <Ranking />
+      <ForumFeed />
+      <SocButtons />
     </aside>
     <div class="content">
       <div class="h2-title h2-title-content flex-s-c">
@@ -12,12 +14,16 @@
   </main>
 </template>
 <script>
-import Aside from '@/components/Aside.vue';
+import Ranking from '@/components/Ranking.vue';
+import ForumFeed from '@/components/ForumFeed.vue';
+import SocButtons from '@/components/SocialButtons.vue';
 
 export default {
   name: 'DownloadsList',
   components: {
-    Aside,
+    Ranking,
+    ForumFeed,
+    SocButtons,
   },
 };
 </script>
