@@ -188,7 +188,7 @@ class AccountController extends Controller
             ->table('MEMB_INFO')
             ->where('session_token', $request->header('Authorization'))
             ->where('isloggedIn', 1)
-            ->select('memb___id as username')
+            ->select('memb___id as username', 'mail_addr as email')
             ->first();
         return response()->json($user);
     }

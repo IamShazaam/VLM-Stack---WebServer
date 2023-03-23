@@ -2,9 +2,7 @@
   <!--wrapper-->
   <div class="wrapper">
     <Header />
-    <main>
-      <router-view />
-    </main>
+    <router-view />
   </div>
   <footer>
     <Footer />
