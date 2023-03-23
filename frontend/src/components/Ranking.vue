@@ -149,63 +149,6 @@
     </div>
   </div>
   <!--rankings-->
-
-  <!--forumHome-->
-  <div class="forumHome blockHome">
-    <!--h2-title-->
-    <div class="h2-title h2-title-table flex-s-c">
-      <span>Forum Feed</span> <a href="">All news</a>
-    </div>
-
-    <div class="forumBlock-content">
-      <!--forumBlock-->
-      <div class="forumBlock">
-        <div class="forumBlock-ava">
-          <img src="../assets/forum-ava_1.png" alt="" />
-        </div>
-        <div class="forumBlock-text">
-          <a href="" class="forumBlock-text_link"
-            >Server Action: Stay at home start: 2020 May 13!</a
-          >
-          <div class="forumBlock-text_info">
-            <span class="forumBlock-text_info-nick"
-              >by <a href="" title="Kitten_L2">Kitten_L2</a></span
-            >
-            |
-            <span class="forumBlock-text_info-date">Today at 10:23</span>
-            <span class="forumBlock-text_info-comments">32</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--forumBlock-content-->
-  </div>
-
-  <!--socBlockHome-->
-  <div class="socHome">
-    <a href="#" class="socButton socYoutube">
-      YouTube
-      <span>Official Channel</span>
-    </a>
-    <a href="#" class="socButton socDiscord">
-      Discord
-      <span>Discussion Chat</span>
-    </a>
-    <a href="#" class="socButton socFacebook">
-      Facebook
-      <span>Official Group</span>
-    </a>
-    <div class="socBlock flex-c-c">
-      <a href="#" class="socBlock-guides socBlock-button">
-        Guides
-        <span>Info center</span>
-      </a>
-      <a href="#" class="socBlock-forum socBlock-button">
-        Forum
-        <span>Community</span>
-      </a>
-    </div>
-  </div>
 </template>
 <style>
 .onlinez {
@@ -224,7 +167,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'AsideComponent',
+  name: 'RankingComponent',
   data() {
     return {
       characters: [],
