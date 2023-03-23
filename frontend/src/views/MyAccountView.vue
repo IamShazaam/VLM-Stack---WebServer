@@ -1,6 +1,22 @@
 <template>
   <main class="main">
     <aside>
+      <div class="forumHome blockHome">
+        <!--h2-title-->
+        <div class="h2-title h2-title-table flex-s-c">
+          <span>User Panel</span> <a href="">Admin Panel</a>
+        </div>
+        <!-- Account Control -->
+        <div class="tableBlock-content">
+          <div class="tableBlock-conten_name">Account Settings</div>
+        </div>
+
+        <!-- Characters View -->
+        <div class="tableBlock-content">
+          <div class="tableBlock-conten_name">Characters Control</div>
+        </div>
+      </div>
+
       <Ranking />
       <ForumFeed />
       <SocButtons />
@@ -12,6 +28,7 @@
         <span>Account Setting</span>
       </div>
       <div class="acc">
+        <!--acc-->
         <div class="acc-title">Account details</div>
         <div class="accBlock flex-s">
           <div class="accBlock-content">
@@ -37,6 +54,7 @@
         </div>
         <!--accBlock-->
       </div>
+
       <!--acc-->
       <div class="acc">
         <div class="acc-title">Actions</div>
@@ -66,19 +84,6 @@
           <button class="big-button-blue">Confirm Changes</button>
         </div>
       </div>
-      <!--acc-->
-      <div class="support">
-        <div class="acc-title">Actions</div>
-        <div class="supportButtons flex-c-c">
-          <div class="supportButton">
-            <button>Add a Ticket</button>
-          </div>
-          <div class="supportButton">
-            <button>Check Ticket</button>
-          </div>
-        </div>
-      </div>
-      <!--support-->
     </div>
 
     <div class="content" v-else>
