@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DatabaseTestController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\PublicWebsiteController;
 use App\Http\Controllers\DummyDataController;
 
 
@@ -32,16 +33,20 @@ Route::post('/login', [AccountController::class, 'login']);
 Route::post('/logout', [AccountController::class, 'logout']);
 Route::get('/check-auth', [AccountController::class, 'checkAuth']);
 Route::get('/user', [AccountController::class, 'user']);
-// Route::get('/api/check-username/{username}', [CheckUsernameController::class, 'checkUsername']);
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
-// Route::get('/user', function (Request $request) {
-//     $user = DB::table('MEMB_INFO')
-//         ->where('session_token', $request->header('Authorization'))
-//         ->where('isloggedIn', 1)
-//         ->select('memb___id as username')
-//         ->first();
-//     return response()->json($user);
-// });
+
+/*
+Here will be all the endPoints for the adminPanel
+*/
+
+
+/*
+Here will be all the endPoints for the userWebsite
+*/
+
+
+/*
+Here will be all the endPoints for the publicWebsite
+*/
+Route::get('/accounts/count', [PublicWebsiteController::class, 'count']);
+Route::get('/top10', [PublicWebsiteController::class, 'top10']);

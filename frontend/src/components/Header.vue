@@ -20,23 +20,31 @@
               <a><router-link to="/downloads">Downloads</router-link></a>
             </li>
             <li>
-              <a><router-link to="/login">Login</router-link></a>
+              <a><router-link to="/ranking">Ranking</router-link></a>
             </li>
             <li>
-              <a><router-link to="/myaccount">MyAcc</router-link></a>
+              <a><router-link to="/events">Events</router-link></a>
             </li>
           </ul>
         </div>
         <!--topPanel-left-->
         <div v-if="!loggedIn">
           <div class="topPanel-right">
-            <p>Welcome, Extranger</p>
             <a href="#register" class="sign-in open_modal"> Sign In </a>
           </div>
         </div>
         <div v-if="loggedIn">
           <div class="topPanel-right">
-            <p>Welcome, {{ username }}</p>
+            <p
+              class="welcome-username"
+              style="
+                color: #fcedc0;
+                font-size: 14px;
+                font-family: 'Philosopher', sans-serif;
+              "
+            >
+              Welcome, {{ username }}
+            </p>
             <a class="sign-in" @click="logout"> Log Out </a>
           </div>
         </div>
@@ -65,7 +73,9 @@
         <div class="blue-light"></div>
         <div class="yellow-light"></div>
       </div>
-      <div class="onlineBlock">Online <span>879</span></div>
+      <div class="onlineBlock">
+        Accounts <span>{{ numAccounts }}</span>
+      </div>
       <div class="onlineReg flex-c-c">
         <div class="onlineReg-block onlineReg-block-player">
           <span>63K</span>
@@ -141,6 +151,7 @@ export default {
       remember: false,
       loggedIn: false,
       user: null,
+      numAccounts: null,
     };
   },
   methods: {
@@ -177,8 +188,20 @@ export default {
         this.$router.push('/');
       });
     },
+    numAcc() {
+      axios
+        .get('/accounts/count')
+        .then((response) => {
+          this.numAccounts = response.data.count;
+          console.log(this.numAccounts);
+        })
+        .catch((error) => {
+          console.log('Error getting number of accounts:', error);
+        });
+    },
   },
   created() {
+    this.numAcc();
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       try {
@@ -204,11 +227,7 @@ export default {
     }
   },
   mounted() {
-    // Check if the user is authenticated
-    // axios.get('/check-auth').then((response) => {
-    //   this.loggedIn = response.data.authenticated;
-    // });
-
+    //Functionality of the Modal when you log in
     const overlay = document.querySelector('#overlay');
     const openModalLinks = document.querySelectorAll('.open_modal');
     const closeModalElements = document.querySelectorAll(
@@ -246,4 +265,6 @@ export default {
     });
   },
 };
+
+// update every 5 seconds
 </script>

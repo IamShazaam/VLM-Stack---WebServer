@@ -3,7 +3,8 @@ import HomeView from '../views/HomeView.vue';
 import DownloadsView from '../views/DownloadsView.vue';
 import RegistrationView from '../views/RegistrationView.vue';
 import MyAccountView from '../views/MyAccountView.vue';
-import AboutView from '../views/AboutView.vue';
+import RankingView from '../views/RankingView.vue';
+import EventsView from '../views/EventsView.vue';
 
 const routes = [
   {
@@ -28,9 +29,14 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: '/about',
-    name: 'about',
-    component: AboutView,
+    path: '/ranking',
+    name: 'ranking',
+    component: RankingView,
+  },
+  {
+    path: '/events',
+    name: 'events',
+    component: EventsView,
   },
   {
     path: '/login',
